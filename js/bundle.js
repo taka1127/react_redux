@@ -29370,27 +29370,56 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var MainArea = function (_React$Component) {
   _inherits(MainArea, _React$Component);
 
-  function MainArea() {
+  function MainArea(props) {
     _classCallCheck(this, MainArea);
 
-    return _possibleConstructorReturn(this, (MainArea.__proto__ || Object.getPrototypeOf(MainArea)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (MainArea.__proto__ || Object.getPrototypeOf(MainArea)).call(this, props));
+
+    _this.state = {
+      todos: [{ label: "Todo1" }, { label: "Todo2" }],
+      todoInputValue: ""
+    };
+    return _this;
   }
 
   _createClass(MainArea, [{
-    key: 'render',
-    value: function render() {
-      var todos = [{ label: "Todo1" }, { label: "Todo2" }, { label: "Todo3" }, { label: "Todo4" }];
+    key: 'onChangeTodoInput',
+    value: function onChangeTodoInput(event) {
+      console.log("onChangeTodoInput", event.target.value);
 
+      this.setState({ todoInputValue: event.target.value });
+    }
+  }, {
+    key: 'onClickAddButton',
+    value: function onClickAddButton(event) {
+      console.log("onClickAddButton");
+
+      var addItem = { label: this.state.todoInputValue };
+      var todos = this.state.todos.slice();
+      todos.push(addItem);
+
+      this.setState({
+        todos: todos,
+        todoInputValue: ""
+      });
+    }
+  }, {
+    key: 'renderTodoItems',
+    value: function renderTodoItems() {
       var todoItemDom = [];
-      for (var i = 0; i < todos.length; i++) {
+      for (var i = 0; i < this.state.todos.length; i++) {
         var todoItem = _react2.default.createElement(
           'li',
           { className: 'todo-list-item', key: "item-" + i },
-          todos[i].label
+          this.state.todos[i].label
         );
         todoItemDom.push(todoItem);
       }
-
+      return todoItemDom;
+    }
+  }, {
+    key: 'render',
+    value: function render() {
       return _react2.default.createElement(
         'div',
         { className: 'main-area' },
@@ -29399,9 +29428,24 @@ var MainArea = function (_React$Component) {
           'main',
           { className: 'list-area' },
           _react2.default.createElement(
+            'div',
+            { className: 'todo-input-area' },
+            _react2.default.createElement('input', { type: 'text',
+              className: 'todo-input',
+              placeholder: 'Todo\u3092\u8FFD\u52A0',
+              value: this.state.todoInputValue,
+              onChange: this.onChangeTodoInput.bind(this) }),
+            _react2.default.createElement(
+              'button',
+              { className: 'add-button',
+                onClick: this.onClickAddButton.bind(this) },
+              '\u767B\u9332'
+            )
+          ),
+          _react2.default.createElement(
             'ul',
             { className: 'todo-list' },
-            todoItemDom
+            this.renderTodoItems()
           )
         ),
         _react2.default.createElement(_footer2.default, null)
