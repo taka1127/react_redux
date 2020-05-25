@@ -29265,10 +29265,42 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var App = function (_React$Component) {
   _inherits(App, _React$Component);
 
-  function App() {
+  function App(props) {
     _classCallCheck(this, App);
 
-    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+    _this.state = {
+      groupList: [{
+        id: "inbox",
+        label: "受信箱"
+      }, {
+        id: "group-1",
+        label: "グループ1"
+      }],
+      todoList: {
+        "inbox": [{
+          id: "item-1",
+          label: "Todo1",
+          completed: false
+        }, {
+          id: "item-2",
+          label: "Todo2",
+          completed: false
+        }],
+        "group-1": [{
+          id: "item-3",
+          label: "Todo3",
+          completed: false
+        }, {
+          id: "item-4",
+          label: "Todo4",
+          completed: false
+        }]
+      },
+      selectedGroup: "inbox"
+    };
+    return _this;
   }
 
   _createClass(App, [{
@@ -29277,8 +29309,10 @@ var App = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         { className: 'wrap' },
-        _react2.default.createElement(_sideArea2.default, null),
-        _react2.default.createElement(_mainArea2.default, null)
+        _react2.default.createElement(_sideArea2.default, {
+          groupList: this.state.groupList }),
+        _react2.default.createElement(_mainArea2.default, {
+          todoList: this.state.todoList[this.state.selectedGroup] })
       );
     }
   }]);
@@ -29316,16 +29350,39 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var SideArea = function (_React$Component) {
   _inherits(SideArea, _React$Component);
 
-  function SideArea() {
+  function SideArea(props) {
     _classCallCheck(this, SideArea);
 
-    return _possibleConstructorReturn(this, (SideArea.__proto__ || Object.getPrototypeOf(SideArea)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (SideArea.__proto__ || Object.getPrototypeOf(SideArea)).call(this, props));
   }
 
   _createClass(SideArea, [{
+    key: "renderGroup",
+    value: function renderGroup() {
+      var groupListDom = [];
+      for (var i = 0; i < this.props.groupList.length; i++) {
+        var group = this.props.groupList[i];
+        var groupItem = _react2.default.createElement(
+          "li",
+          { key: group.id },
+          group.label
+        );
+        groupListDom.push(groupItem);
+      }
+      return groupListDom;
+    }
+  }, {
     key: "render",
     value: function render() {
-      return _react2.default.createElement("div", { className: "side-area" });
+      return _react2.default.createElement(
+        "div",
+        { className: "side-area" },
+        _react2.default.createElement(
+          "ul",
+          { className: "group-list" },
+          this.renderGroup()
+        )
+      );
     }
   }]);
 
@@ -29380,15 +29437,6 @@ var MainArea = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (MainArea.__proto__ || Object.getPrototypeOf(MainArea)).call(this, props));
 
     _this.state = {
-      todos: [{
-        id: "item-1",
-        label: "Todo1",
-        completed: false
-      }, {
-        id: "item-2",
-        label: "Todo2",
-        completed: false
-      }],
       todoInputValue: ""
     };
     return _this;
@@ -29445,11 +29493,11 @@ var MainArea = function (_React$Component) {
     key: 'renderTodoItems',
     value: function renderTodoItems() {
       var todoItemDom = [];
-      for (var i = 0; i < this.state.todos.length; i++) {
-        if (!this.state.todos[i].completed) {
+      for (var i = 0; i < this.props.todoList.length; i++) {
+        if (!this.props.todoList[i].completed) {
           var todoItem = _react2.default.createElement(_listItem2.default, {
             key: "item-" + i,
-            data: this.state.todos[i],
+            data: this.props.todoList[i],
             completeTodo: this.onCompleteTodo.bind(this),
             deleteTodo: this.onDeleteTodo.bind(this)
           });
