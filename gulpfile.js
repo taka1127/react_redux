@@ -13,7 +13,7 @@ gulp.task('browser-sync', function() {
 
 gulp.task('watch', function () {
     // Callback mode, useful if any plugin in the pipeline depends on the `end`/`flush` event
-    watch('./**/*.html', function () {
+    watch(['./**/*.html', './js/**/*.js'], function () {
         browserSync.reload();
     });
 });
