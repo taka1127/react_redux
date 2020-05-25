@@ -65,6 +65,21 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+if (process.env.NODE_ENV === 'production') {
+  module.exports = __webpack_require__(7);
+} else {
+  module.exports = __webpack_require__(8);
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -252,21 +267,6 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(7);
-} else {
-  module.exports = __webpack_require__(8);
-}
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 2 */
@@ -473,7 +473,7 @@ checkPropTypes.resetWarningCache = function() {
 
 module.exports = checkPropTypes;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 4 */
@@ -585,7 +585,7 @@ if (process.env.NODE_ENV === 'production') {
   module.exports = __webpack_require__(13);
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 6 */
@@ -594,7 +594,7 @@ if (process.env.NODE_ENV === 'production') {
 "use strict";
 
 
-var _react = __webpack_require__(1);
+var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -2560,7 +2560,7 @@ exports.version = ReactVersion;
   })();
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 9 */
@@ -2625,7 +2625,7 @@ if (process.env.NODE_ENV === 'production') {
   module.exports = __webpack_require__(14);
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 11 */
@@ -2644,7 +2644,7 @@ if (process.env.NODE_ENV === 'production') {
 /*
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(1),n=__webpack_require__(4),r=__webpack_require__(5);function u(a){for(var b="https://reactjs.org/docs/error-decoder.html?invariant="+a,c=1;c<arguments.length;c++)b+="&args[]="+encodeURIComponent(arguments[c]);return"Minified React error #"+a+"; visit "+b+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings."}if(!aa)throw Error(u(227));
+var aa=__webpack_require__(0),n=__webpack_require__(4),r=__webpack_require__(5);function u(a){for(var b="https://reactjs.org/docs/error-decoder.html?invariant="+a,c=1;c<arguments.length;c++)b+="&args[]="+encodeURIComponent(arguments[c]);return"Minified React error #"+a+"; visit "+b+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings."}if(!aa)throw Error(u(227));
 function ba(a,b,c,d,e,f,g,h,k){var l=Array.prototype.slice.call(arguments,3);try{b.apply(c,l)}catch(m){this.onError(m)}}var da=!1,ea=null,fa=!1,ha=null,ia={onError:function(a){da=!0;ea=a}};function ja(a,b,c,d,e,f,g,h,k){da=!1;ea=null;ba.apply(ia,arguments)}function ka(a,b,c,d,e,f,g,h,k){ja.apply(this,arguments);if(da){if(da){var l=ea;da=!1;ea=null}else throw Error(u(198));fa||(fa=!0,ha=l)}}var la=null,ma=null,na=null;
 function oa(a,b,c){var d=a.type||"unknown-event";a.currentTarget=na(c);ka(d,b,void 0,a);a.currentTarget=null}var pa=null,qa={};
 function ra(){if(pa)for(var a in qa){var b=qa[a],c=pa.indexOf(a);if(!(-1<c))throw Error(u(96,a));if(!sa[c]){if(!b.extractEvents)throw Error(u(97,a));sa[c]=b;c=b.eventTypes;for(var d in c){var e=void 0;var f=c[d],g=b,h=d;if(ta.hasOwnProperty(h))throw Error(u(99,h));ta[h]=f;var k=f.phasedRegistrationNames;if(k){for(e in k)k.hasOwnProperty(e)&&ua(k[e],g,h);e=!0}else f.registrationName?(ua(f.registrationName,g,h),e=!0):e=!1;if(!e)throw Error(u(98,d,a));}}}}
@@ -3818,7 +3818,7 @@ exports.unstable_wrapCallback = unstable_wrapCallback;
   })();
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 14 */
@@ -3842,7 +3842,7 @@ if (process.env.NODE_ENV !== "production") {
   (function() {
 'use strict';
 
-var React = __webpack_require__(1);
+var React = __webpack_require__(0);
 var _assign = __webpack_require__(4);
 var Scheduler = __webpack_require__(5);
 var checkPropTypes = __webpack_require__(3);
@@ -28838,7 +28838,7 @@ exports.version = ReactVersion;
   })();
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 15 */
@@ -28853,7 +28853,7 @@ if (process.env.NODE_ENV === 'production') {
   module.exports = __webpack_require__(17);
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 16 */
@@ -29227,7 +29227,7 @@ exports.unstable_wrap = unstable_wrap;
   })();
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 18 */
@@ -29242,7 +29242,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(1);
+var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -29301,7 +29301,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(1);
+var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -29347,7 +29347,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(1);
+var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -29358,6 +29358,10 @@ var _header2 = _interopRequireDefault(_header);
 var _footer = __webpack_require__(22);
 
 var _footer2 = _interopRequireDefault(_footer);
+
+var _listItem = __webpack_require__(23);
+
+var _listItem2 = _interopRequireDefault(_listItem);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29376,7 +29380,15 @@ var MainArea = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (MainArea.__proto__ || Object.getPrototypeOf(MainArea)).call(this, props));
 
     _this.state = {
-      todos: [{ label: "Todo1" }, { label: "Todo2" }],
+      todos: [{
+        id: "item-1",
+        label: "Todo1",
+        completed: false
+      }, {
+        id: "item-2",
+        label: "Todo2",
+        completed: false
+      }],
       todoInputValue: ""
     };
     return _this;
@@ -29404,16 +29416,45 @@ var MainArea = function (_React$Component) {
       });
     }
   }, {
+    key: 'onCompleteTodo',
+    value: function onCompleteTodo(id) {
+      var _state = Object.assign({}, this.state);
+      for (var i = 0; i < _state.todos.length; i++) {
+        if (_state.todos[i].id == id) {
+          _state.todos[i].completed = true;
+          break;
+        }
+      }
+
+      this.setState(_state);
+    }
+  }, {
+    key: 'onDeleteTodo',
+    value: function onDeleteTodo(id) {
+      var _state = Object.assign({}, this.state);
+      for (var i = 0; i < _state.todos.length; i++) {
+        if (_state.todos[i].id == id) {
+          _state.todos.splice(i, 1);{/*spliceメソッドでi番目のオブジェクトを1コ削除*/}
+          break;
+        }
+      }
+
+      this.setState(_state);
+    }
+  }, {
     key: 'renderTodoItems',
     value: function renderTodoItems() {
       var todoItemDom = [];
       for (var i = 0; i < this.state.todos.length; i++) {
-        var todoItem = _react2.default.createElement(
-          'li',
-          { className: 'todo-list-item', key: "item-" + i },
-          this.state.todos[i].label
-        );
-        todoItemDom.push(todoItem);
+        if (!this.state.todos[i].completed) {
+          var todoItem = _react2.default.createElement(_listItem2.default, {
+            key: "item-" + i,
+            data: this.state.todos[i],
+            completeTodo: this.onCompleteTodo.bind(this),
+            deleteTodo: this.onDeleteTodo.bind(this)
+          });
+          todoItemDom.push(todoItem);
+        }
       }
       return todoItemDom;
     }
@@ -29471,7 +29512,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(1);
+var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -29521,7 +29562,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(1);
+var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -29557,6 +29598,77 @@ var Footer = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Footer;
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ListItem = function (_React$Component) {
+  _inherits(ListItem, _React$Component);
+
+  function ListItem() {
+    _classCallCheck(this, ListItem);
+
+    return _possibleConstructorReturn(this, (ListItem.__proto__ || Object.getPrototypeOf(ListItem)).apply(this, arguments));
+  }
+
+  _createClass(ListItem, [{
+    key: "onChangeChecBox",
+    value: function onChangeChecBox(event) {
+      console.log("onChangeChecBox");
+      this.props.completeTodo(event.target.value);
+    }
+  }, {
+    key: "onClickDeleteButton",
+    value: function onClickDeleteButton(event) {
+      this.props.deleteTodo(this.props.data.id);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        "li",
+        { className: "todo-list-item" },
+        _react2.default.createElement("input", { type: "checkbox",
+          value: this.props.data.id,
+          onChange: this.onChangeChecBox.bind(this) }),
+        this.props.data.label,
+        _react2.default.createElement(
+          "button",
+          {
+            className: "delete-button",
+            onClick: this.onClickDeleteButton.bind(this) },
+          "\xD7"
+        )
+      );
+    }
+  }]);
+
+  return ListItem;
+}(_react2.default.Component);
+
+exports.default = ListItem;
 
 /***/ })
 /******/ ]);

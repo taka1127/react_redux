@@ -48,6 +48,18 @@ html,body {
   list-style: none;
 }
 
+.main-area .list-area .todo-list .todo-list-item input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.main-area .list-area .todo-list .todo-list-item .delete-button {
+  border: none;
+  font-size: 1.2rem;
+  float: right;
+  cursor: pointer;
+  outline: none;
+}
+
 .main-area .list-area .todo-input-area {
   margin-bottom: 20px;
   overflow: hidden;

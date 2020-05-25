@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './header';
 import Footer from './footer';
+import ListItem from './listItem';
 
 export default class MainArea extends React.Component {
   constructor(props) {
@@ -8,8 +9,16 @@ export default class MainArea extends React.Component {
 
     this.state = {
       todos: [
-        {label:"Todo1"},
-        {label:"Todo2"},
+        {
+          id:"item-1",
+          label:"Todo1",
+          completed: false
+        },
+        {
+          id:"item-2",
+          label:"Todo2",
+          completed: false
+        },
       ],
       todoInputValue: ""
     }
@@ -30,17 +39,46 @@ export default class MainArea extends React.Component {
 
     this.setState({
       todos: todos,
-      todoInputValue: ""
+      todoInputValue: "",
     });
   }
 
+  onCompleteTodo(id) {
+    let _state = Object.assign({}, this.state);
+    for (var i=0; i < _state.todos.length; i++) {
+      if(_state.todos[i].id == id) {
+        _state.todos[i].completed = true;
+        break;
+      } 
+    }
 
+    this.setState(_state);
+  }
+
+  onDeleteTodo(id) {
+    let _state = Object.assign({}, this.state);
+    for (var i = 0; i < _state.todos.length; i++) {
+      if(_state.todos[i].id == id) {
+        _state.todos.splice(i, 1);  {/*spliceメソッドでi番目のオブジェクトを1コ削除*/}
+        break;
+      } 
+    }
+
+    this.setState(_state);
+  }
 
   renderTodoItems() {
     let todoItemDom = [];
     for(var i = 0; i < this.state.todos.length; i++) {
-      let todoItem = <li className="todo-list-item" key={"item-"+i}>{this.state.todos[i].label}</li>
-      todoItemDom.push(todoItem);
+      if(!this.state.todos[i].completed) {
+        let todoItem = <ListItem
+          key={"item-"+i}
+          data={this.state.todos[i]}
+          completeTodo={this.onCompleteTodo.bind(this)}
+          deleteTodo={this.onDeleteTodo.bind(this)}
+        />;
+        todoItemDom.push(todoItem);
+      }
     }
     return todoItemDom;
   }
