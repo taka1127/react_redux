@@ -29298,12 +29298,53 @@ var App = function (_React$Component) {
           completed: false
         }]
       },
-      selectedGroup: "inbox"
+      todoCount: 4,
+      selectedGroup: "group-1"
     };
     return _this;
   }
 
   _createClass(App, [{
+    key: 'onAddTodo',
+    value: function onAddTodo(label) {
+      var _state = Object.assign({}, this.state);{/*stateのコピー(stateは直接触れない)*/}
+      _state.todoCount++;
+      var todoList = _state.todoList[_state.selectedGroup];
+      var todoItem = {
+        id: "item-" + _state.todoCount,
+        label: label,
+        completed: false
+      };
+      todoList.push(todoItem);
+      this.setState(_state);
+    }
+  }, {
+    key: 'onCompleteTodo',
+    value: function onCompleteTodo(id) {
+      var _state = Object.assign({}, this.state);
+      var todoList = _state.todoList[_state.selectedGroup];
+      for (var i = 0; i < todoList.length; i++) {
+        if (todoList[i].id == id) {
+          todoList[i].completed = true;
+          break;
+        }
+      }
+      this.setState(_state);
+    }
+  }, {
+    key: 'onDeleteTodo',
+    value: function onDeleteTodo(id) {
+      var _state = Object.assign({}, this.state);
+      var todoList = _state.todoList[_state.selectedGroup];
+      for (var i = 0; i < todoList.length; i++) {
+        if (todoList[i].id == id) {
+          todoList.splice(i, 1);{/*spliceメソッドでi番目のオブジェクトを1コ削除*/}
+          break;
+        }
+      }
+      this.setState(_state);
+    }
+  }, {
     key: 'onSelectGroup',
     value: function onSelectGroup(id) {
       console.log("onSelectGroup", id);
@@ -29319,7 +29360,10 @@ var App = function (_React$Component) {
           groupList: this.state.groupList,
           onSelect: this.onSelectGroup.bind(this) }),
         _react2.default.createElement(_mainArea2.default, {
-          todoList: this.state.todoList[this.state.selectedGroup] })
+          todoList: this.state.todoList[this.state.selectedGroup],
+          onAddTodo: this.onAddTodo.bind(this),
+          onCompleteTodo: this.onCompleteTodo.bind(this),
+          onDeleteTodo: this.onDeleteTodo.bind(this) })
       );
     }
   }]);
@@ -29472,42 +29516,18 @@ var MainArea = function (_React$Component) {
   }, {
     key: 'onClickAddButton',
     value: function onClickAddButton(event) {
-      console.log("onClickAddButton");
-
-      var addItem = { label: this.state.todoInputValue };
-      var todos = this.state.todos.slice();
-      todos.push(addItem);
-
-      this.setState({
-        todos: todos,
-        todoInputValue: ""
-      });
+      this.setState({ todoInputValue: "" });
+      this.props.onAddTodo(this.state.todoInputValue);
     }
   }, {
     key: 'onCompleteTodo',
     value: function onCompleteTodo(id) {
-      var _state = Object.assign({}, this.state);
-      for (var i = 0; i < _state.todos.length; i++) {
-        if (_state.todos[i].id == id) {
-          _state.todos[i].completed = true;
-          break;
-        }
-      }
-
-      this.setState(_state);
+      this.props.onCompleteTodo(id);
     }
   }, {
     key: 'onDeleteTodo',
     value: function onDeleteTodo(id) {
-      var _state = Object.assign({}, this.state);
-      for (var i = 0; i < _state.todos.length; i++) {
-        if (_state.todos[i].id == id) {
-          _state.todos.splice(i, 1);{/*spliceメソッドでi番目のオブジェクトを1コ削除*/}
-          break;
-        }
-      }
-
-      this.setState(_state);
+      this.props.onDeleteTodo(id);
     }
   }, {
     key: 'renderTodoItems',
