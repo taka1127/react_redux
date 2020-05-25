@@ -29367,16 +29367,52 @@ var App = function (_React$Component) {
       this.setState(_state);
     }
   }, {
+    key: 'onEditGroup',
+    value: function onEditGroup(id, groupName) {
+      var _state = Object.assign({}, this.state);
+      for (var i = 0; i < this.state.groupList.length; i++) {
+        if (this.state.groupList[i].id == id) {
+          this.state.groupList[i].label = groupName;
+          break;
+        }
+      }
+      this.setState(_state);
+    }
+  }, {
+    key: 'onDeleteGroup',
+    value: function onDeleteGroup(id) {
+      var _state = Object.assign({}, this.state);
+      for (var i = 0; i < this.state.groupList.length; i++) {
+        if (this.state.groupList[i].id == id) {
+          this.state.groupList.splice(i, 1);
+          break;
+        }
+      }
+      delete this.state.todoList[id];
+      this.setState(_state);
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var groupName = "";
+      for (var i = 0; i < this.state.groupList.length; i++) {
+        if (this.state.groupList[i].id == this.state.selectedGroup) {
+          groupName = this.state.groupList[i].label;
+          break;
+        }
+      }
+
       return _react2.default.createElement(
         'div',
         { className: 'wrap' },
         _react2.default.createElement(_sideArea2.default, {
           groupList: this.state.groupList,
           onSelect: this.onSelectGroup.bind(this),
-          onAddGroup: this.onAddGroup.bind(this) }),
+          onAddGroup: this.onAddGroup.bind(this),
+          onEditGroup: this.onEditGroup.bind(this),
+          onDeleteGroup: this.onDeleteGroup.bind(this) }),
         _react2.default.createElement(_mainArea2.default, {
+          groupName: groupName,
           todoList: this.state.todoList[this.state.selectedGroup],
           onAddTodo: this.onAddTodo.bind(this),
           onCompleteTodo: this.onCompleteTodo.bind(this),
@@ -29469,8 +29505,9 @@ var SideArea = function (_React$Component) {
     }
   }, {
     key: 'onSaveEditGroupDialog',
-    value: function onSaveEditGroupDialog(groupName) {
+    value: function onSaveEditGroupDialog(id, groupName) {
       console.log("onSaveEditGroupDialog", groupName);
+      this.props.onEditGroup(id, groupName);
       this.setState({ showEditGroupDialog: false });
     }
   }, {
@@ -29481,6 +29518,7 @@ var SideArea = function (_React$Component) {
   }, {
     key: 'onDeleteEditGroupDialog',
     value: function onDeleteEditGroupDialog(id) {
+      this.props.onDeleteGroup(id);
       this.setState({ showEditGroupDialog: false });
     }
   }, {
@@ -29714,7 +29752,7 @@ var EditGroupDialog = function (_React$Component) {
     key: "componentWillReceiveProps",
     value: function componentWillReceiveProps(nextProps) {
       var _state = Object.assign({}, this.state);
-      _state.groupName = nextProps.group.label;
+      _state.groupName = nextProps.group ? nextProps.group.label : "";
       this.setState(_state);
     }
   }, {
@@ -29725,12 +29763,12 @@ var EditGroupDialog = function (_React$Component) {
   }, {
     key: "onSave",
     value: function onSave(event) {
-      this.props.onSave(this.state.groupName);
+      this.props.onSave(this.props.group.id, this.state.groupName);
     }
   }, {
     key: "onDelete",
     value: function onDelete(event) {
-      this.props.onDelete();
+      this.props.onDelete(this.props.group.id);
     }
   }, {
     key: "onChangeGroupName",
@@ -29898,7 +29936,8 @@ var MainArea = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         { className: 'main-area' },
-        _react2.default.createElement(_header2.default, null),
+        _react2.default.createElement(_header2.default, {
+          groupName: this.props.groupName }),
         _react2.default.createElement(
           'main',
           { className: 'list-area' },
@@ -29973,7 +30012,7 @@ var Header = function (_React$Component) {
       return _react2.default.createElement(
         "header",
         { className: "header" },
-        "\u53D7\u4FE1\u7BB1"
+        this.props.groupName
       );
     }
   }]);
