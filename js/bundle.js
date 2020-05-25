@@ -29437,7 +29437,8 @@ var SideArea = function (_React$Component) {
 
     _this.state = {
       showAddGroupDialog: false,
-      showEditGroupDialog: false
+      showEditGroupDialog: false,
+      selectedGroup: undefined
     };
     return _this;
   }
@@ -29469,6 +29470,7 @@ var SideArea = function (_React$Component) {
   }, {
     key: 'onSaveEditGroupDialog',
     value: function onSaveEditGroupDialog(groupName) {
+      console.log("onSaveEditGroupDialog", groupName);
       this.setState({ showEditGroupDialog: false });
     }
   }, {
@@ -29484,7 +29486,19 @@ var SideArea = function (_React$Component) {
   }, {
     key: 'onClickGroupEdit',
     value: function onClickGroupEdit(event) {
-      this.setState({ showEditGroupDialog: true });
+      var editButton = _reactDom2.default.findDOMNode(event.target);
+      var id = editButton.dataset.id;
+      var selectedGroup = void 0;
+      for (var i = 0; 1 < this.props.groupList.length; i++) {
+        if (this.props.groupList[i].id == id) {
+          selectedGroup = this.props.groupList[i];
+          break;
+        }
+      }
+      this.setState({
+        showEditGroupDialog: true,
+        selectedGroup: selectedGroup
+      });
     }
   }, {
     key: 'renderGroup',
@@ -29505,6 +29519,7 @@ var SideArea = function (_React$Component) {
           _react2.default.createElement(
             'button',
             {
+              'data-id': group.id,
               className: 'group-edit-button',
               onClick: this.onClickGroupEdit.bind(this) },
             '\u7DE8\u96C6'
@@ -29542,6 +29557,7 @@ var SideArea = function (_React$Component) {
           onCancel: this.onCancelAddGroupDialog.bind(this) }),
         _react2.default.createElement(_editGroupDialog2.default, {
           show: this.state.showEditGroupDialog,
+          group: this.state.selectedGroup,
           onSave: this.onSaveEditGroupDialog.bind(this),
           onCancel: this.onCancelEditGroupDialog.bind(this),
           onDelete: this.onDeleteEditGroupDialog.bind(this) })
@@ -29683,13 +29699,25 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var EditGroupDialog = function (_React$Component) {
   _inherits(EditGroupDialog, _React$Component);
 
-  function EditGroupDialog() {
+  function EditGroupDialog(props) {
     _classCallCheck(this, EditGroupDialog);
 
-    return _possibleConstructorReturn(this, (EditGroupDialog.__proto__ || Object.getPrototypeOf(EditGroupDialog)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (EditGroupDialog.__proto__ || Object.getPrototypeOf(EditGroupDialog)).call(this, props));
+
+    _this.state = {
+      groupName: ""
+    };
+    return _this;
   }
 
   _createClass(EditGroupDialog, [{
+    key: "componentWillReceiveProps",
+    value: function componentWillReceiveProps(nextProps) {
+      var _state = Object.assign({}, this.state);
+      _state.groupName = nextProps.group.label;
+      this.setState(_state);
+    }
+  }, {
     key: "onCancel",
     value: function onCancel(event) {
       this.props.onCancel();
@@ -29697,13 +29725,17 @@ var EditGroupDialog = function (_React$Component) {
   }, {
     key: "onSave",
     value: function onSave(event) {
-      var groupNameInpit = this.refs.groupName;
-      this.props.onSave(groupNameInpit.value);
+      this.props.onSave(this.state.groupName);
     }
   }, {
     key: "onDelete",
     value: function onDelete(event) {
       this.props.onDelete();
+    }
+  }, {
+    key: "onChangeGroupName",
+    value: function onChangeGroupName(event) {
+      this.setState({ groupName: event.target.value });
     }
   }, {
     key: "render",
@@ -29725,10 +29757,11 @@ var EditGroupDialog = function (_React$Component) {
               { className: "dialog-content" },
               "\u30B0\u30EB\u30FC\u30D7\u540D\uFF1A",
               _react2.default.createElement("input", {
-                ref: "groupName",
                 type: "text",
                 name: "group-text-input",
-                className: "group-text-input" })
+                className: "group-text-input",
+                value: this.state.groupName,
+                onChange: this.onChangeGroupName.bind(this) })
             ),
             _react2.default.createElement(
               "div",

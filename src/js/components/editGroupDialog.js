@@ -1,16 +1,34 @@
 import React from 'react';
 
 export default class EditGroupDialog extends React.Component {
-  onCancel(event){
-    this.props.onCancel();
+
+constructor(props){
+  super(props);
+
+  this.state = {
+    groupName: ""
   }
-  onSave(event){
-    let groupNameInpit = this.refs.groupName;
-    this.props.onSave(groupNameInpit.value);
-  }
+}
+
+componentWillReceiveProps(nextProps) {
+  let _state = Object.assign({}, this.state);
+  _state.groupName = nextProps.group.label;
+  this.setState(_state);
+}
+
+onCancel(event){
+  this.props.onCancel();
+}
+onSave(event){
+  this.props.onSave(this.state.groupName);
+}
 
 onDelete(event){
   this.props.onDelete();
+}
+
+onChangeGroupName(event){
+  this.setState({groupName: event.target.value});
 }
 
   render() {
@@ -22,10 +40,11 @@ onDelete(event){
             <div className="dialog-content">
               グループ名：
               <input 
-              ref="groupName"
               type="text"
               name="group-text-input"
-              className="group-text-input"/>
+              className="group-text-input"
+              value={this.state.groupName}
+              onChange={this.onChangeGroupName.bind(this)}/>
             </div>
             <div className="dialog-footer" >
               <button 
