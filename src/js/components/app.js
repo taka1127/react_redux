@@ -46,11 +46,18 @@ export default class App extends React.Component {
       selectedGroup: "inbox"
     }
   }
+
+  onSelectGroup(id) {
+    console.log("onSelectGroup", id);
+    this.setState({selectedGroup: id});
+  }
+
   render() {
     return (
       <div className="wrap">
         <SideArea 
-          groupList={this.state.groupList}/>
+          groupList={this.state.groupList}
+          onSelect={this.onSelectGroup.bind(this)}/>
         <MainArea 
           todoList={this.state.todoList[this.state.selectedGroup]}/>
       </div>

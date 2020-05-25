@@ -29304,13 +29304,20 @@ var App = function (_React$Component) {
   }
 
   _createClass(App, [{
+    key: 'onSelectGroup',
+    value: function onSelectGroup(id) {
+      console.log("onSelectGroup", id);
+      this.setState({ selectedGroup: id });
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
         'div',
         { className: 'wrap' },
         _react2.default.createElement(_sideArea2.default, {
-          groupList: this.state.groupList }),
+          groupList: this.state.groupList,
+          onSelect: this.onSelectGroup.bind(this) }),
         _react2.default.createElement(_mainArea2.default, {
           todoList: this.state.todoList[this.state.selectedGroup] })
       );
@@ -29357,17 +29364,33 @@ var SideArea = function (_React$Component) {
   }
 
   _createClass(SideArea, [{
+    key: "onClickGroup",
+    value: function onClickGroup(id) {
+      this.props.onSelect(id);
+    }
+  }, {
     key: "renderGroup",
     value: function renderGroup() {
+      var _this2 = this;
+
       var groupListDom = [];
-      for (var i = 0; i < this.props.groupList.length; i++) {
-        var group = this.props.groupList[i];
+
+      var _loop = function _loop() {
+        var group = _this2.props.groupList[i];
         var groupItem = _react2.default.createElement(
           "li",
-          { key: group.id },
+          { key: group.id,
+            "data-id": group.id,
+            onClick: function onClick() {
+              _this2.onClickGroup(group.id);
+            } },
           group.label
         );
         groupListDom.push(groupItem);
+      };
+
+      for (var i = 0; i < this.props.groupList.length; i++) {
+        _loop();
       }
       return groupListDom;
     }
