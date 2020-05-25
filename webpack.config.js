@@ -1,6 +1,6 @@
 module.exports = {
   /* ビルドの起点となるファイルの設定 */
-  entry: './src/js/app.js',
+  entry: './src/js/index.js',
   /* 出力されるファイルの設定 */
   output: {
     path: '/js', //出力先のファイル名

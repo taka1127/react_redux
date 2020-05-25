@@ -10,10 +10,10 @@ var webpackConfig = require('./webpack.config.js');
 
 gulp.task('compile', function(){
     return gulp.src([
-        './src/js/app.js',
+        './src/js/index.js',
         ])
         .pipe(plumber({errorHandler: notify.onError('<%= error.message %>')}))
-        .pipe(webpackStream(webpackConfig), null, function(error, stats){
+        .pipe(webpackStream(webpackConfig), null, function(err, stats){
             if(stats.compilation.errors.length > 0){
                 notify({
                     title: 'webpack error',
