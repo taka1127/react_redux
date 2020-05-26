@@ -26,8 +26,8 @@ export default class SideArea extends React.Component {
   }
 
   onSaveAddGroupDialog(groupName) {
-    let groupId = `group-${this.props.groupCount + 1}`;
-    this.props.onAddGroup(groupName, groupId);
+    console.log("onSaveAddGroupDialog", groupName);
+    this.props.onAddGroup(groupName);
     this.setState({showAddGroupDialog: false});
   }
 
@@ -38,6 +38,7 @@ export default class SideArea extends React.Component {
 
 
   onSaveEditGroupDialog(id, groupName) {
+    console.log("onSaveEditGroupDialog", groupName)
     this.props.onEditGroup(id, groupName)
     this.setState({showEditGroupDialog: false}); 
   }
@@ -111,5 +112,4 @@ export default class SideArea extends React.Component {
       </div>
     )
   }
-  
 }
