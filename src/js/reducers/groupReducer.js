@@ -10,11 +10,31 @@ const groupInitState = {
     },
     {
       id:"group-1",
-      label:"グループ1"
+      label:"目標"
+    },
+    {
+      id:"group-2",
+      label:"買い物"
+    },
+    {
+      id:"group-3",
+      label:"仕事"
+    },
+    {
+      id:"group-4",
+      label:"スケジュール"
+    },
+    {
+      id:"group-5",
+      label:"旅行"
+    },
+    {
+      id:"group-6",
+      label:"習いごと"
     }
   ],
   groupCount: 1,
-  selectedGroup: "inbox"
+  selectedGroup: "group-1"
 }
 
 function groupReducer(state = groupInitState, action){

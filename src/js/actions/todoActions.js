@@ -1,4 +1,4 @@
-export const todoActionsNames = {
+export const todoActionNames = {
   ADD_TODO: 'ADD_TODO',
   COMPLETE_TODO: 'COMPLETE_TOD',
   DELETE_TODO: 'DELETE_TODO'
@@ -9,7 +9,7 @@ export const todoActionsNames = {
 export const todoActions = {
   addTodo: (label, selectedGroup) => {
     return {
-      type: todoActionsNames.ADD_TODO,
+      type: todoActionNames.ADD_TODO,
       payload: {
         label: label,
         selectedGroup: selectedGroup
@@ -18,7 +18,7 @@ export const todoActions = {
   },
   completeTodo: (id, selectedGroup) => {
     return {
-      type: todoActionsNames.COMPLETE_TODO,
+      type: todoActionNames.COMPLETE_TODO,
       payload: {
         id: id,
         selectedGroup: selectedGroup
@@ -27,7 +27,7 @@ export const todoActions = {
   },
   deleteTodo: (id, selectedGroup) => {
     return {
-      type: todoActionsNames.DELETE_TODO,
+      type: todoActionNames.DELETE_TODO,
       payload: {
         id: id,
         selectedGroup: selectedGroup

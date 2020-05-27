@@ -34,7 +34,7 @@ export default class MainArea extends React.Component {
     for(var i = 0; i < this.props.todoList.length; i++) {
       if(!this.props.todoList[i].completed) {
         let todoItem = <ListItem
-          key={"item-"+i}
+          key={"item-" + i}
           data={this.props.todoList[i]}
           completeTodo={this.onCompleteTodo.bind(this)}
           deleteTodo={this.onDeleteTodo.bind(this)}

@@ -19475,7 +19475,7 @@ function useReduxContext() {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var todoActionsNames = exports.todoActionsNames = {
+var todoActionNames = exports.todoActionNames = {
   ADD_TODO: 'ADD_TODO',
   COMPLETE_TODO: 'COMPLETE_TOD',
   DELETE_TODO: 'DELETE_TODO'
@@ -19484,7 +19484,7 @@ var todoActionsNames = exports.todoActionsNames = {
 var todoActions = exports.todoActions = {
   addTodo: function addTodo(label, selectedGroup) {
     return {
-      type: todoActionsNames.ADD_TODO,
+      type: todoActionNames.ADD_TODO,
       payload: {
         label: label,
         selectedGroup: selectedGroup
@@ -19493,7 +19493,7 @@ var todoActions = exports.todoActions = {
   },
   completeTodo: function completeTodo(id, selectedGroup) {
     return {
-      type: todoActionsNames.COMPLETE_TODO,
+      type: todoActionNames.COMPLETE_TODO,
       payload: {
         id: id,
         selectedGroup: selectedGroup
@@ -19502,7 +19502,7 @@ var todoActions = exports.todoActions = {
   },
   deleteTodo: function deleteTodo(id, selectedGroup) {
     return {
-      type: todoActionsNames.DELETE_TODO,
+      type: todoActionNames.DELETE_TODO,
       payload: {
         id: id,
         selectedGroup: selectedGroup
@@ -50916,15 +50916,60 @@ var todoInitState = {
     }],
     "group-1": [{
       id: "item-3",
-      label: "Todo3",
+      label: "ダイエット",
       completed: false
     }, {
       id: "item-4",
-      label: "Todo4",
+      label: "読書（１ヶ月に３冊）",
+      completed: false
+    }],
+    "group-2": [{
+      id: "item-5",
+      label: "牛肉",
+      completed: false
+    }, {
+      id: "item-6",
+      label: "玉ねぎ",
+      completed: false
+    }],
+    "group-3": [{
+      id: "item-7",
+      label: "レポート(~5/15)",
+      completed: false
+    }, {
+      id: "item-8",
+      label: "会議(5/20,15:00)",
+      completed: false
+    }],
+    "group-4": [{
+      id: "item-9",
+      label: "銀行へ行く",
+      completed: false
+    }, {
+      id: "item-10",
+      label: "洗車",
+      completed: false
+    }],
+    "group-5": [{
+      id: "item-11",
+      label: "温泉",
+      completed: false
+    }, {
+      id: "item-12",
+      label: "テーマパーク",
+      completed: false
+    }],
+    "group-6": [{
+      id: "item-13",
+      label: "英会話",
+      completed: false
+    }, {
+      id: "item-14",
+      label: "フットサル ",
       completed: false
     }]
   },
-  todoCount: 4
+  todoCount: 14
 };
 
 function todoReducer() {
@@ -50934,7 +50979,7 @@ function todoReducer() {
   var _state = _lodash2.default.cloneDeep(state);{/*stateのコピー(stateは直接触れない)*/}
   var todoList = [];
   switch (action.type) {
-    case _todoActions.todoActionsNames.ADD_TODO:
+    case _todoActions.todoActionNames.ADD_TODO:
       _state.todoCount++;
       todoList = _state.todoList[action.payload.selectedGroup];
       var todoItem = {
@@ -50945,7 +50990,7 @@ function todoReducer() {
       todoList.push(todoItem);
       return _state;
 
-    case _todoActions.todoActionsNames.COMPLETE_TODO:
+    case _todoActions.todoActionNames.COMPLETE_TODO:
       todoList = _state.todoList[action.payload.selectedGroup];
       for (var i = 0; i < todoList.length; i++) {
         if (todoList[i].id == action.payload.id) {
@@ -50955,7 +51000,7 @@ function todoReducer() {
       }
       return _state;
 
-    case _todoActions.todoActionsNames.DELETE_TODO:
+    case _todoActions.todoActionNames.DELETE_TODO:
       todoList = _state.todoList[action.payload.selectedGroup];
       for (var i = 0; i < todoList.length; i++) {
         if (todoList[i].id == action.payload.id) {
@@ -51030,10 +51075,25 @@ var groupInitState = {
     label: "受信箱"
   }, {
     id: "group-1",
-    label: "グループ1"
+    label: "目標"
+  }, {
+    id: "group-2",
+    label: "買い物"
+  }, {
+    id: "group-3",
+    label: "仕事"
+  }, {
+    id: "group-4",
+    label: "スケジュール"
+  }, {
+    id: "group-5",
+    label: "旅行"
+  }, {
+    id: "group-6",
+    label: "習いごと"
   }],
   groupCount: 1,
-  selectedGroup: "inbox"
+  selectedGroup: "group-1"
 };
 
 function groupReducer() {
