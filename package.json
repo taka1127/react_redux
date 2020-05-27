@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "react": "^16.4.0",
-    "react-dom": "^16.4.0"
+    "react-dom": "^16.4.0",
+    "react-google-charts": "^3.0.15"
   }
 }
